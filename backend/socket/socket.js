@@ -4,7 +4,7 @@ const socketHandler = (socket, io) => {
 	console.log("A new friend has joined the chat!");
 
 	db.query(
-		"SELECT * FROM comments_system ORDER BY timestamp DESC",
+		"SELECT * FROM comments ORDER BY timestamp DESC",
 		(error, results) => {
 			if (error) {
 				console.error(
@@ -33,7 +33,7 @@ const socketHandler = (socket, io) => {
 		}
 
 		const query =
-			"INSERT INTO comments_system (username, comment, timestamp) VALUES (?, ?, ?)";
+			"INSERT INTO comments (username, comment, timestamp) VALUES (?, ?, ?)";
 		db.query(query, [username, comment, timestamp], (error, result) => {
 			if (error) {
 				console.error("Failed to save comment:", error);

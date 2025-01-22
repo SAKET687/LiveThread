@@ -2,7 +2,7 @@ const db = require("../database/dbconfig");
 
 const getComments = (req, res) => {
 	db.query(
-		"SELECT * FROM comments_system ORDER BY timestamp DESC",
+		"SELECT * FROM comments ORDER BY timestamp DESC",
 		(err, results) => {
 			if (err)
 				return res
@@ -28,7 +28,7 @@ const postComment = (req, res) => {
 	}
 
 	const query =
-		"INSERT INTO comments_system (username, comment, timestamp) VALUES (?, ?, ?)";
+		"INSERT INTO comments (username, comment, timestamp) VALUES (?, ?, ?)";
 	db.query(query, [username, comment, timestamp], (err) => {
 		if (err) {
 			return res
